@@ -5,10 +5,12 @@ import os
 import threading
 
 # ---------- SHARED FILES ----------
-shared_dir = os.environ.get("SERVER_SHARED_FILES")
-if not shared_dir or not os.path.isdir(shared_dir):
-    print("Shared files directory not set or invalid")
+shared_dir = os.environ.get("SERVER_SHARED_FILES", "SharedFiles")
+
+if not os.path.isdir(shared_dir):
+    print(f"Shared files directory '{shared_dir}' does not exist")
     sys.exit(1)
+
 
 # ---------- SERVER SETUP ----------
 port = int(sys.argv[1])
